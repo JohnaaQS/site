@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phantom</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <style>
+        /* Algemene stijl */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: #fff;  
+            color: #38761d;
+            padding: 20px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Navigatiebalk */
+        nav {
+            background: #6aa84f;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 20px;
+            padding: 10px 15px;
+            transition: background 0.3s, border-radius 0.3s;
+            border-radius: 8px;
+        }
+        nav a:hover {
+            background: #38761d;
+            border-radius: 8px;
+        }
+
+        /* Layout container */
+        .container {
+            display: flex;
+            flex: 1;
+            margin: 30px auto;
+            max-width: 1200px;
+            gap: 30px;
+        }
+
+        /* Hoofdcontent */
+        .main {
+            flex: 2;
+            padding: 25px;
+            background: #fff;
+            border-left: 6px solid #38761d;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .main h2 {
+            color: #38761d;
+            margin-bottom: 15px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            flex: 1;
+            padding: 25px;
+            background: #e6e6e6;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .sidebar img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 12px;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 style="font-family: 'Montserrat', sans-serif; font-weight: bold;">Project Phantom</h1>  
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="over.html">Over ons</a>
+        <a href="blog.html">Blog</a>
+        <a href="project.html">Project</a>
+        <a href="contact.html">Contact</a>
+        <a href="winddatapage.html">Winddata</a>
+        <a href="grafiek.html">Grafieken</a>
+    </nav>
+    
+    <div class="container">
+        <section class="main">
+            <h2>Jouw stap naar duurzame energie!</h2>
+            <p>Bij Project Phantom geloven we in een groenere toekomst, waarin iedereen de mogelijkheid heeft om zelf duurzame energie op te wekken. 
+                Onze missie is om particulieren te helpen bij het realiseren van hun eigen windenergie-oplossingen.</p> 
+            <p>Met behulp van geavanceerde windmetingen analyseren we of jouw locatie geschikt is voor een windmolen. 
+                We begeleiden je in het hele proces – van metingen tot installatie – zodat je optimaal profiteert van schone, 
+                hernieuwbare energie.</p>
+            <p>Wil jij weten of jouw tuin of terrein geschikt is voor windenergie? 
+                Neem contact met ons op en ontdek de mogelijkheden!</p>
+        </section>
+        <aside class="sidebar">  
+            <div>
+                <a href="https://timelogify.com" target="_blank">
+                    <img src="afbeeldingblog.jpeg" alt="Duurzame energie afbeelding"> 
+                </a>
+            </div>
+        </aside>
+    </div>
+    <footer>
+        <p>&copy; 2025 Phantom Website. Alle rechten voorbehouden.</p>
+    </footer>
+</body>
+</html>

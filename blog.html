@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Phantom</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <style>
+        /* Algemene stijl */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: #fff;
+            color: #38761d;
+            padding: 15px;
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Navigatiebalk links */
+        nav {
+            background: #6aa84f;
+            width: 200px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            width: 100%;
+            text-align: center;
+            display: block;
+            transition: background 0.3s, border-radius 0.3s;
+        }
+        nav a:hover {
+            background: #38761d;
+            border-radius: 5px;
+        }
+
+        /* Content */
+        .container {
+            display: flex;
+            margin-left: 220px;
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .blog-content {
+            flex: 2;
+            background: #e6e6e6; /* Zelfde kleur als de sfeerfotobox */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-content h1 {
+            color: #38761d;
+            text-align: center;
+        }
+
+        .blog-content p {
+            color: #555;
+            text-align: justify;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            flex: 1;
+            padding: 20px;
+            background: #e6e6e6;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-left: 20px;
+        }
+
+        .sidebar img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            margin-top: auto;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        BLOG - Phantom
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="over.html">Over ons</a>
+        <a href="blog.html">Blog</a>
+        <a href="project.html">Project</a>
+        <a href="contact.html">Contact</a>
+        <a href="winddatapage.html">Winddata</a>
+    </nav>
+
+    <div class="container" style="max-width: 800px; margin: auto; background-color: #f9f9f9; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+        <div class="blog-content" style="font-family: 'Segoe UI', sans-serif; color: #333; line-height: 1.8;">
+            <h1 style="color: #216e1f; font-size: 28px; font-weight: bold; text-align: center; margin-bottom: 25px;">
+                "Tijdens het voorbije schooljaar hebben we grote stappen gezet binnen ons project"
+            </h1>
+            <p class="date" style="font-style: italic; color: #666; text-align: center; margin-bottom: 30px;">Gepubliceerd door Phantom</p>
+
+    
+            <p><strong>Voortgang Windmeterproject</strong><br>
+                Hieronder een overzicht van de stappen die tot nu toe zijn uitgevoerd binnen het project.</p>
+        
+                <p><strong>Op 19 september 2024:</strong><br>
+                Eerste meting en opstelling is een eerste meting uitgevoerd samen met Jean. Op 26 september 2024 is de eerste windmeter in elkaar gezet en opgesteld.</p>
+        
+                <p><strong>Op 3 oktober 2024:</strong><br>
+                Code en dataverwerking is code geschreven om data van de windmeter op te halen. Op 17 oktober 2024 is de automatische opslag van data naar Github gerealiseerd.</p>
+        
+                <p><strong>Op 18 oktober 2024:</strong><br>
+                Presentatie van het project is het project gepresenteerd tijdens een pitch in Genk (Pathé).</p>
+        
+                <p><strong>Dataverzameling:</strong><br>
+                Bij elke projectactiviteit is de windmeter opgesteld om extra data te verzamelen.</p>
+        
+                <p><strong>Op 11 februari 2025:</strong><br>
+                Websiteontwikkeling is gestart met het bouwen van de projectwebsite. De ontwikkeling hiervan is nog gaande.</p>
+        
+                <p><strong>Op 20 maart 2025:</strong><br>
+                Uitbreiding met tweede windmeter is een tweede windmeter gebouwd. Deze staat opgesteld op school, zodat de eerste meter bij Jean geplaatst kan worden voor aanvullende metingen.</p>
+        
+                <p><strong>Op 27 maart 2025:</strong><br>
+                Visualisatie van data is de verzamelde data omgezet in een geautomatiseerde grafiek via Excel.</p>
+
+                <p><strong>Op 3 april 2025:</strong><br>
+                we zijn begonnen aan het dashboard. Dit dashboard is nog in ontwikkeling.</p>
+
+                <p><strong>Op 8 mei 2025:</strong><br>
+                het dashbord is af. Dit dashboard is een overzicht van de verzamelde data van de windmeter. zodat het mooi en duidelijk op een beeldscherm kan worden weergegeven.</p>
+
+                <p><strong>Op 13 mei 2025:</strong><br>
+                we hebben een email gemaakt voor ons project zodat iedereen met vragen ons kan bereiken</p>
+                
+                <p><strong>Op 14 mei 2025:</strong><br>
+                we hebben grafieken gemaakt van de verzamelde data. Dit is gedaan met behulp van Excel en aan de hand van ons nieuw dashbord. De grafieken zijn een overzicht van de verzamelde data van de windmeter.</p>
+
+                <p><strong>Op 15 mei 2025:</strong><br>
+                we zijn vandaag geïntervieuwd voor limburg stemt' af en hebben onze uitleg over het project gegeven.
+
+                <p><strong>Op 19 mei 2025:</strong><br>
+                we hebben een ventilator gemaakt die we op Limburg stemt' af kunnen gebruiken om zo de wind te simuleren.
+
+                <p><strong>Op 22 mei 2025:</strong><br>
+                we hebben vandaag alle laatste kleine dingen gedaan en een laatste keer getest en klaargezet, zodat we morgen alles kunnen inladen en klaar zijn voor de grote dag.</p>
+
+
+        </div>
+    </div>
+    
+
+        <div class="sidebar">
+            <img src="sfeerbeeldbuitencrop.jpg" alt="Sfeerbeeld buiten">
+            <img src="sfeerbeeldzijkant.jpg" alt="Sfeerbeeld 2">
+            <img src="sfeerbeeld3.jpg" alt="Sfeerbeeld 3">
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 Phantom. Alle rechten voorbehouden.
+    </footer>
+</body>
+</html>
