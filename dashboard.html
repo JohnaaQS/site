@@ -3,22 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard - Phantom</title>
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<title>Actueel Dashboard - Phantom</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-    body { font-family: Arial; margin: 0; padding: 0; background: #f4f4f4; }
-    header { background: #fff; color: #38761d; padding: 15px; text-align: center; font-size: 26px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    nav { background: #6aa84f; padding: 12px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    nav a { color: white; text-decoration: none; font-weight: bold; margin: 0 15px; padding: 8px 12px; border-radius: 5px; transition: background 0.3s; }
-    nav a:hover { background: #38761d; }
-    .container { width: 90%; max-width: 1200px; margin: 20px auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; }
-    .chart-box { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); width: 300px; }
-    footer { background: #333; color: #fff; text-align: center; padding: 10px 0; font-size: 10px; margin-top: 40px; }
+    body { font-family: Arial; margin:0; padding:0; background:#f4f4f4; }
+    header { background:#fff; color:#38761d; padding:15px; text-align:center; font-size:26px; font-weight:bold; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
+    nav { background:#6aa84f; padding:12px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
+    nav a { color:white; text-decoration:none; font-weight:bold; margin:0 15px; padding:8px 12px; border-radius:5px; transition: background 0.3s; }
+    nav a:hover { background:#38761d; }
+    .container { width:90%; max-width:1200px; margin:20px auto; display:flex; flex-wrap:wrap; gap:40px; justify-content:center; }
+    .chart-box { background:white; padding:20px; border-radius:10px; box-shadow:0 3px 10px rgba(0,0,0,0.1); width:300px; text-align:center; }
+    footer { background:#333; color:#fff; text-align:center; padding:10px 0; font-size:10px; margin-top:40px; }
 </style>
 </head>
 <body>
-<header>Wind Dashboard - Phantom</header>
+<header>Actueel Dashboard - Phantom</header>
 <nav>
     <a href="index.html">Home</a>
     <a href="over.html">Over ons</a>
@@ -31,12 +30,15 @@
 
 <div class="container">
     <div class="chart-box">
+        <h3>Windsnelheid (m/s)</h3>
         <canvas id="windsnelheidChart"></canvas>
     </div>
     <div class="chart-box">
+        <h3>Luchtvochtigheid (%)</h3>
         <canvas id="luchtvochtigheidChart"></canvas>
     </div>
     <div class="chart-box">
+        <h3>Temperatuur (°C)</h3>
         <canvas id="temperatuurChart"></canvas>
     </div>
 </div>
@@ -46,66 +48,62 @@
 <script>
     // 🔥 Later DB-code voorbeeld:
     /*
-    fetch("/api/winddata")
+    fetch("/api/winddata/latest")
         .then(res => res.json())
         .then(data => {
-            // hier data naar grafieken omzetten
-        })
-        .catch(err => console.error("DB fout:", err));
+            // data = {windsnelheid:5.2, luchtvochtigheid:60, temperatuur:18}
+            updateCharts(data);
+        });
     */
 
-    // ✅ Hardcoded demo-waardes
-    const windsnelheidData = [5.2, 4.8, 6.1, 5.5]; // m/s
-    const luchtvochtigheidData = [60, 62, 58, 61]; // %
-    const temperatuurData = [18, 18, 19, 19]; // °C
-    const tijdData = ["12:00", "12:05", "12:10", "12:15"];
+    // ✅ Hardcoded demo-waardes actueel
+    const currentData = {
+        windsnelheid: 5.2, // max 20
+        luchtvochtigheid: 60, // 0-100%
+        temperatuur: 18 // 0-40°C
+    };
 
-    // Cirkelgrafiek - Windsnelheid
-    new Chart(document.getElementById('windsnelheidChart'), {
-        type: 'doughnut',
-        data: {
-            labels: tijdData,
-            datasets: [{
-                label: 'Windsnelheid (m/s)',
-                data: windsnelheidData,
-                backgroundColor: ['#6aa84f','#38761d','#8fcf3c','#b6e07a']
-            }]
-        },
-        options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
-    });
-
-    // Cirkelgrafiek - Luchtvochtigheid
-    new Chart(document.getElementById('luchtvochtigheidChart'), {
-        type: 'doughnut',
-        data: {
-            labels: tijdData,
-            datasets: [{
-                label: 'Luchtvochtigheid (%)',
-                data: luchtvochtigheidData,
-                backgroundColor: ['#38761d','#6aa84f','#b6e07a','#8fcf3c']
-            }]
-        },
-        options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
-    });
-
-    // Staafgrafiek - Temperatuur
-    new Chart(document.getElementById('temperatuurChart'), {
-        type: 'bar',
-        data: {
-            labels: tijdData,
-            datasets: [{
-                label: 'Temperatuur (°C)',
-                data: temperatuurData,
-                backgroundColor: '#6aa84f'
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: { beginAtZero: true }
+    // Cirkelgrafiek functies
+    function createDonut(ctx, value, max, label, color) {
+        return new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: [label, 'Overig'],
+                datasets: [{
+                    data: [value, max-value],
+                    backgroundColor: [color, '#eee'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive:true,
+                rotation: -90,
+                circumference: 180,
+                plugins: { legend:{display:false} },
             }
-        }
-    });
+        });
+    }
+
+    const windsnelheidChart = createDonut(document.getElementById('windsnelheidChart'), currentData.windsnelheid, 20, 'm/s', '#6aa84f');
+    const luchtvochtigheidChart = createDonut(document.getElementById('luchtvochtigheidChart'), currentData.luchtvochtigheid, 100, '%', '#38761d');
+    const temperatuurChart = createDonut(document.getElementById('temperatuurChart'), currentData.temperatuur, 40, '°C', '#b6e07a');
+
+    // 🚀 Als je straks DB connectie hebt, kun je updateCharts(data) gebruiken
+    /*
+    function updateCharts(data) {
+        windsnelheidChart.data.datasets[0].data[0] = data.windsnelheid;
+        windsnelheidChart.data.datasets[0].data[1] = 20 - data.windsnelheid;
+        windsnelheidChart.update();
+
+        luchtvochtigheidChart.data.datasets[0].data[0] = data.luchtvochtigheid;
+        luchtvochtigheidChart.data.datasets[0].data[1] = 100 - data.luchtvochtigheid;
+        luchtvochtigheidChart.update();
+
+        temperatuurChart.data.datasets[0].data[0] = data.temperatuur;
+        temperatuurChart.data.datasets[0].data[1] = 40 - data.temperatuur;
+        temperatuurChart.update();
+    }
+    */
 </script>
 </body>
 </html>
