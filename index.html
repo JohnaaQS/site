@@ -1,157 +1,182 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Greenhouse Management</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <style>
-        /* Algemene stijl */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            background: url("background.jpg") no-repeat center center fixed;
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        header {
-            background: rgba(255,255,255,0.95);  
-            color: #38761d;
-            padding: 20px;
-            text-align: center;
-            font-size: 28px;
-            font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        nav {
-            background: rgba(106,168,79,0.95);
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 0 20px;
-            padding: 10px 15px;
-            transition: background 0.3s, border-radius 0.3s;
-            border-radius: 8px;
-        }
-        nav a:hover {
-            background: #38761d;
-        }
-        .container {
-            display: flex;
-            flex: 1;
-            margin: 30px auto;
-            max-width: 1200px;
-            gap: 30px;
-        }
-        .main {
-            flex: 2;
-            padding: 25px;
-            background: rgba(255,255,255,0.95);
-            border-left: 6px solid #38761d;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            border-radius: 10px;
-        }
-        .main h2 {
-            color: #38761d;
-            margin-bottom: 15px;
-            opacity: 0;
-            animation: fadeIn 1s ease forwards;
-            animation-delay: 0.2s;
-        }
-        .main p {
-            opacity: 0;
-            animation: fadeIn 1s ease forwards;
-        }
-        .main p:nth-of-type(1) {
-            animation-delay: 0.4s;
-        }
-        .main p:nth-of-type(2) {
-            animation-delay: 0.6s;
-        }
-        .main p:nth-of-type(3) {
-            animation-delay: 0.8s;
-        }
-        .sidebar {
-            flex: 1;
-            padding: 25px;
-            background: rgba(230,230,230,0.95);
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        .sidebar img {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.4s ease;
-        }
-        .sidebar img:hover {
-            transform: scale(1.05);
-        }
-        footer {
-            background: rgba(51,51,51,0.95);
-            color: #fff;
-            text-align: center;
-            padding: 15px 0;
-            font-size: 12px;
-            margin-top: auto;
-        }
-        /* Fade-in animatie */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greenhouse Management</title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+/* Algemeen */
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: Arial, sans-serif; line-height:1.6; background:#f4f4f4; }
+
+/* Header & Hero */
+header { position: relative; height: 80vh; display:flex; flex-direction:column; justify-content:center; align-items:center; color:white; text-align:center; overflow:hidden; }
+header video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index: -1; }
+header h1 { font-size:48px; font-weight:bold; animation:fadeIn 2s ease forwards; opacity:0; }
+header p { font-size:20px; margin-top:10px; animation:fadeIn 3s ease forwards; opacity:0; }
+header a { display:inline-block; margin-top:20px; padding:12px 25px; background:#6aa84f; color:white; text-decoration:none; font-weight:bold; border-radius:8px; transition:0.3s; }
+header a:hover { background:#38761d; }
+@keyframes fadeIn { to { opacity:1; } }
+
+/* Nav */
+nav { background:#6aa84f; padding:12px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
+nav a { color:white; text-decoration:none; font-weight:bold; margin:0 15px; padding:8px 12px; border-radius:5px; transition: background 0.3s; }
+nav a:hover { background:#38761d; }
+
+/* Container & sections */
+.container { width:90%; max-width:1200px; margin:40px auto; }
+.section { margin-bottom:60px; }
+.cards { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
+.card { background:white; padding:20px; width:250px; border-radius:10px; box-shadow:0 3px 10px rgba(0,0,0,0.1); text-align:center; transition:0.3s; }
+.card:hover { transform: translateY(-10px); box-shadow:0 5px 15px rgba(0,0,0,0.2); }
+
+/* Dashboard */
+.dashboard { display:flex; flex-wrap:wrap; gap:40px; justify-content:center; }
+.chart-box { background:white; padding:20px; border-radius:10px; box-shadow:0 3px 10px rgba(0,0,0,0.1); width:250px; text-align:center; }
+
+/* Progress bars */
+.progress-bar { width:100%; background:#eee; border-radius:8px; overflow:hidden; margin-top:10px; }
+.progress-fill { height:20px; background:#6aa84f; width:0%; transition:1s; text-align:center; color:white; font-weight:bold; line-height:20px; }
+
+/* Testimonials / Blog */
+.testimonial, .blog { background:white; padding:20px; margin:10px; border-radius:10px; box-shadow:0 3px 10px rgba(0,0,0,0.1); }
+.blog h4 { margin-bottom:10px; }
+
+/* Footer */
+footer { background:#333; color:#fff; text-align:center; padding:20px; font-size:12px; }
+</style>
 </head>
 <body>
-    <header>
-        <h1>Greenhouse Management Project</h1>
-    </header>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="over.html">Over mij</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="project.html">Project</a>
-        <a href="contact.html">Contact</a>
-        <a href="grafiek.html">Grafieken</a>
-    </nav>
 
-    <div class="container">
-        <section class="main">
-            <h2>Optimaliseer jouw kasbeheer!</h2>
-            <p>Ons Greenhouse Management Project helpt bij het monitoren van temperatuur, luchtvochtigheid, lichtintensiteit en bodemvochtigheid. 
-                Met realtime sensordata kun je beter beslissingen nemen voor een gezonde kasomgeving.</p>
-            <p>Het systeem visualiseert alle data in een overzichtelijk dashboard en slaat informatie op voor analyse en trendherkenning. 
-                Daarnaast kunnen acties worden gesimuleerd, zoals het aansturen van ventilatoren of LED-verlichting bij bepaalde drempelwaarden.</p>
-            <p>Ontdek hoe technologie jouw kasbeheer kan verbeteren en efficiëntie kan verhogen!</p>
-        </section>
-        <aside class="sidebar">  
-            <div>
-                <a href="grafiek.html">
-                    <img src="intro.png" alt="Greenhouse afbeelding"> 
-                </a>
-            </div>
-        </aside>
+<header>
+    <video autoplay muted loop>
+        <source src="greenhouse.mp4" type="video/mp4">
+    </video>
+    <h1>Greenhouse Management Project</h1>
+    <p>Realtime monitoring en optimalisatie van jouw kas</p>
+    <a href="#dashboard">Bekijk Dashboard</a>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="over.html">Over mij</a>
+    <a href="project.html">Project</a>
+    <a href="contact.html">Contact</a>
+    <a href="grafieken.html">Grafieken</a>
+</nav>
+
+<div class="container">
+
+<!-- Feature Cards -->
+<section class="section" id="features">
+    <h2 style="text-align:center; margin-bottom:30px;">Wat ons systeem doet</h2>
+    <div class="cards">
+        <div class="card">
+            🌡<h3>Temperatuur meten</h3>
+            <p>Realtime temperatuurmonitoring voor optimale plantengroei.</p>
+        </div>
+        <div class="card">
+            💧<h3>Luchtvochtigheid</h3>
+            <p>Altijd de juiste luchtvochtigheid in de kas.</p>
+        </div>
+        <div class="card">
+            💡<h3>Lichtintensiteit</h3>
+            <p>Regel automatisch de verlichting voor optimale fotosynthese.</p>
+        </div>
+        <div class="card">
+            ⚠️<h3>Waarschuwingen</h3>
+            <p>Krijg notificaties bij afwijkende waarden.</p>
+        </div>
     </div>
+</section>
 
-    <footer>
-        <p>&copy; 2025 Greenhouse Management Project. Alle rechten voorbehouden.</p>
-    </footer>
+<!-- Dashboard preview -->
+<section class="section" id="dashboard">
+    <h2 style="text-align:center; margin-bottom:30px;">Live Data Preview</h2>
+    <div class="dashboard">
+        <div class="chart-box">
+            <h4>Windsnelheid (m/s)</h4>
+            <canvas id="windsnelheidChart"></canvas>
+        </div>
+        <div class="chart-box">
+            <h4>Luchtvochtigheid (%)</h4>
+            <canvas id="luchtvochtigheidChart"></canvas>
+        </div>
+        <div class="chart-box">
+            <h4>Temperatuur (°C)</h4>
+            <canvas id="temperatuurChart"></canvas>
+        </div>
+    </div>
+</section>
+
+<!-- Progress Bars / KPI -->
+<section class="section" id="kpi">
+    <h2 style="text-align:center; margin-bottom:30px;">KPI's</h2>
+    <div>
+        <h4>Plant waterniveau</h4>
+        <div class="progress-bar"><div class="progress-fill" style="width:70%;">70%</div></div>
+
+        <h4>Kas lichtniveau</h4>
+        <div class="progress-bar"><div class="progress-fill" style="width:85%;">85%</div></div>
+
+        <h4>Temperatuur target</h4>
+        <div class="progress-bar"><div class="progress-fill" style="width:60%;">60%</div></div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section" id="testimonials">
+    <h2 style="text-align:center; margin-bottom:30px;">Wat klanten zeggen</h2>
+    <div class="cards">
+        <div class="testimonial">"Onze kas-efficiëntie steeg 20% dankzij realtime data!"</div>
+        <div class="testimonial">"90% minder plantstress door vroege waarschuwingen."</div>
+    </div>
+</section>
+
+<!-- Blog Snippets -->
+<section class="section" id="blog">
+    <h2 style="text-align:center; margin-bottom:30px;">Laatste nieuws</h2>
+    <div class="cards">
+        <div class="blog">
+            <h4>Nieuwe sensortechnologie in kas</h4>
+            <p>Onze nieuwste sensoren meten nu ook bodemvochtigheid.</p>
+            <a href="blog.html">Lees meer</a>
+        </div>
+        <div class="blog">
+            <h4>Efficiëntie tips voor je kas</h4>
+            <p>Hoe je energiekosten kan verlagen met realtime data.</p>
+            <a href="blog.html">Lees meer</a>
+        </div>
+    </div>
+</section>
+
+</div>
+
+<footer>
+    Contact: info@greenhouse.nl | Volg ons: 🌱🐦📘
+</footer>
+
+<script>
+    // Hardcoded dashboard data
+    const currentData = {
+        windsnelheid: 5.2,
+        luchtvochtigheid: 60,
+        temperatuur: 18
+    };
+
+    function createDonut(ctx, value, max, color) {
+        return new Chart(ctx, {
+            type: 'doughnut',
+            data: { labels: ['Value','Remaining'], datasets:[{data:[value,max-value], backgroundColor:[color,'#eee'], borderWidth:1}] },
+            options: { responsive:true, rotation:-90, circumference:180, plugins:{legend:{display:false}} }
+        });
+    }
+
+    createDonut(document.getElementById('windsnelheidChart'), currentData.windsnelheid, 20, '#6aa84f');
+    createDonut(document.getElementById('luchtvochtigheidChart'), currentData.luchtvochtigheid, 100, '#38761d');
+    createDonut(document.getElementById('temperatuurChart'), currentData.temperatuur, 40, '#b6e07a');
+</script>
 </body>
 </html>
