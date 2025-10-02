@@ -6,120 +6,126 @@
 <title>Winddata - Phantom</title>
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f4f4f4;
-        }
-        header {
-            background: #fff;
-            color: #38761d;
-            padding: 15px;
-            text-align: center;
-            font-size: 26px;
-            font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        nav {
-            background: #6aa84f;
-            padding: 12px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 0 15px;
-            padding: 8px 12px;
-            transition: background 0.3s, border-radius 0.3s;
-            border-radius: 5px;
-        }
-        nav a:hover {
-            background: #38761d;
-            border-radius: 5px;
-        }
- 
-        .container {
-            width: 80%;
-            margin: auto;
-            text-align: center;
-            padding: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background: white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            border: 3px solid #38761d;
-        }
-        th, td {
-            border: 1px solid #6aa84f;
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #6aa84f;
-            color: white;
-        }
-        footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            font-size: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f4f4f4;
+    }
+    header {
+        background: #fff;
+        color: #38761d;
+        padding: 15px;
+        text-align: center;
+        font-size: 26px;
+        font-weight: bold;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    nav {
+        background: #6aa84f;
+        padding: 12px;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        margin: 0 15px;
+        padding: 8px 12px;
+        transition: background 0.3s, border-radius 0.3s;
+        border-radius: 5px;
+    }
+    nav a:hover {
+        background: #38761d;
+        border-radius: 5px;
+    }
+    .container {
+        width: 80%;
+        margin: auto;
+        text-align: center;
+        padding: 20px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border: 3px solid #38761d;
+    }
+    th, td {
+        border: 1px solid #6aa84f;
+        padding: 10px;
+        text-align: left;
+    }
+    th {
+        background-color: #6aa84f;
+        color: white;
+    }
+    footer {
+        background: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        font-size: 10px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
 </style>
 </head>
 <body>
 <header>
-        Winddata - Phantom
+    Winddata - Phantom
 </header>
 <nav>
-<a href="index.html">Home</a>
-<a href="over.html">Over ons</a>
-<a href="blog.html">Blog</a>
-<a href="project.html">Project</a>
-<a href="contact.html">Contact</a>
-<a href="winddatapage.html">Winddata</a>
-<a href="grafiek.html">Grafieken</a>
+    <a href="index.html">Home</a>
+    <a href="over.html">Over ons</a>
+    <a href="blog.html">Blog</a>
+    <a href="project.html">Project</a>
+    <a href="contact.html">Contact</a>
+    <a href="winddatapage.html">Winddata</a>
+    <a href="grafiek.html">Grafieken</a>
 </nav>
 <div class="container">
-<h2>Live Winddata</h2>
-<div id="csv-container">Laden...</div>
+    <h2>Live Winddata</h2>
+    <div id="csv-container">Laden...</div>
 </div>
 <footer>
-&copy; 2025 Phantom. Alle rechten voorbehouden.
+    &copy; 2025 Phantom. Alle rechten voorbehouden.
 </footer>
+
 <script>
-        async function fetchCSV() {
-            const url = "https://raw.githubusercontent.com/JohnaaQS/ICT-projecten/main/Programma/weather_data.csv";
-            try {
-                const response = await fetch(url);
-                const data = await response.text();
-                const rows = data.split("\n").map(row => row.split(","));
-                let table = "<table><tr>";
-                table += rows[0].map(header => `<th>${header}</th>`).join("") + "</tr>";
-                for (let i = 1; i < rows.length; i++) {
-                    if (rows[i].length > 1) {
-                        table += "<tr>" + rows[i].map(cell => `<td>${cell}</td>`).join("") + "</tr>";
-                    }
-                }
-                table += "</table>";
-                document.getElementById("csv-container").innerHTML = table;
-            } catch (error) {
-                console.error("Fout bij ophalen van CSV:", error);
-                document.getElementById("csv-container").innerHTML = "Er is een fout opgetreden bij het laden van de gegevens.";
-            }
+    // 🔥 Later DB code (voorbeeld in Node/Express):
+    /*
+    fetch("/api/winddata")
+        .then(res => res.json())
+        .then(data => renderTable(data))
+        .catch(err => console.error("DB fout:", err));
+    */
+
+    // ✅ Mock data (handmatig)
+    const mockData = [
+        ["Datum", "Tijd", "Windsnelheid (m/s)", "Windrichting", "Temperatuur (°C)"],
+        ["2025-10-02", "12:00", "5.2", "NW", "18"],
+        ["2025-10-02", "12:05", "4.8", "N", "18"],
+        ["2025-10-02", "12:10", "6.1", "NO", "19"],
+        ["2025-10-02", "12:15", "5.5", "O", "19"]
+    ];
+
+    function renderTable(rows) {
+        let table = "<table><tr>";
+        table += rows[0].map(header => `<th>${header}</th>`).join("") + "</tr>";
+        for (let i = 1; i < rows.length; i++) {
+            table += "<tr>" + rows[i].map(cell => `<td>${cell}</td>`).join("") + "</tr>";
         }
-        window.onload = fetchCSV;
+        table += "</table>";
+        document.getElementById("csv-container").innerHTML = table;
+    }
+
+    // 🚀 Render meteen mock data
+    renderTable(mockData);
 </script>
 </body>
 </html>
-
- 
