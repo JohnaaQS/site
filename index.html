@@ -1,52 +1,11 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Greenhouse Management</title>
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<style>
-/* Algemeen */
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: Arial, sans-serif; line-height:1.6; background:#f4f4f4; }
-
-/* Header & Hero */
-header { position: relative; height: 80vh; display:flex; flex-direction:column; justify-content:center; align-items:center; color:white; text-align:center; overflow:hidden; }
-header video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index: -1; }
-header h1 { font-size:48px; font-weight:bold; animation:fadeIn 2s ease forwards; opacity:0; }
-header p { font-size:20px; margin-top:10px; animation:fadeIn 3s ease forwards; opacity:0; }
-header a { display:inline-block; margin-top:20px; padding:12px 25px; background:#6aa84f; color:white; text-decoration:none; font-weight:bold; border-radius:8px; transition:0.3s; }
-header a:hover { background:#38761d; }
-@keyframes fadeIn { to { opacity:1; } }
-
-/* Nav */
-nav { background:#6aa84f; padding:12px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
-nav a { color:white; text-decoration:none; font-weight:bold; margin:0 15px; padding:8px 12px; border-radius:5px; transition: background 0.3s; }
-nav a:hover { background:#38761d; }
-
-/* Container & sections */
-.container { width:90%; max-width:1200px; margin:40px auto; }
-.section { margin-bottom:60px; }
-.cards { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
-.card { background:white; padding:20px; width:250px; border-radius:10px; box-shadow:0 3px 10px rgba(0,0,0,0.1); text-align:center; transition:0.3s; }
-.card:hover { transform: translateY(-10px); box-shadow:0 5px 15px rgba(0,0,0,0.2); }
-
-/* Dashboard */
-.dashboard { display:flex; flex-wrap:wrap; gap:40px; justify-content:center; }
-.chart-box { background:white; padding:20px; border-radius:10px; box-shadow:0 3px 10px rgba(0,0,0,0.1); width:250px; text-align:center; }
-
-/* Progress bars */
-.progress-bar { width:100%; background:#eee; border-radius:8px; overflow:hidden; margin-top:10px; }
-.progress-fill { height:20px; background:#6aa84f; width:0%; transition:1s; text-align:center; color:white; font-weight:bold; line-height:20px; }
-
-/* Testimonials / Blog */
-.testimonial, .blog { background:white; padding:20px; margin:10px; border-radius:10px; box-shadow:0 3px 10px rgba(0,0,0,0.1); }
-.blog h4 { margin-bottom:10px; }
-
-/* Footer */
-footer { background:#333; color:#fff; text-align:center; padding:20px; font-size:12px; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenhouse Management Project</title>
+    <!-- Link naar externe CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -68,113 +27,20 @@ footer { background:#333; color:#fff; text-align:center; padding:20px; font-size
 </nav>
 
 <div class="container">
-
-<!-- Feature Cards -->
-<section class="section" id="features">
-    <h2 style="text-align:center; margin-bottom:30px;">Wat ons systeem doet</h2>
-    <div class="cards">
-        <div class="card">
-            🌡<h3>Temperatuur meten</h3>
-            <p>Realtime temperatuurmonitoring voor optimale plantengroei.</p>
+    <section class="section" id="features">
+        <h2>Wat ons systeem doet</h2>
+        <div class="cards">
+            <div class="card">🌡 Temperatuur meten</div>
+            <div class="card">💧 Luchtvochtigheid</div>
+            <div class="card">💡 Lichtintensiteit</div>
+            <div class="card">⚠️ Waarschuwingen</div>
         </div>
-        <div class="card">
-            💧<h3>Luchtvochtigheid</h3>
-            <p>Altijd de juiste luchtvochtigheid in de kas.</p>
-        </div>
-        <div class="card">
-            💡<h3>Lichtintensiteit</h3>
-            <p>Regel automatisch de verlichting voor optimale fotosynthese.</p>
-        </div>
-        <div class="card">
-            ⚠️<h3>Waarschuwingen</h3>
-            <p>Krijg notificaties bij afwijkende waarden.</p>
-        </div>
-    </div>
-</section>
-
-<!-- Dashboard preview -->
-<section class="section" id="dashboard">
-    <h2 style="text-align:center; margin-bottom:30px;">Live Data Preview</h2>
-    <div class="dashboard">
-        <div class="chart-box">
-            <h4>Windsnelheid (m/s)</h4>
-            <canvas id="windsnelheidChart"></canvas>
-        </div>
-        <div class="chart-box">
-            <h4>Luchtvochtigheid (%)</h4>
-            <canvas id="luchtvochtigheidChart"></canvas>
-        </div>
-        <div class="chart-box">
-            <h4>Temperatuur (°C)</h4>
-            <canvas id="temperatuurChart"></canvas>
-        </div>
-    </div>
-</section>
-
-<!-- Progress Bars / KPI -->
-<section class="section" id="kpi">
-    <h2 style="text-align:center; margin-bottom:30px;">KPI's</h2>
-    <div>
-        <h4>Plant waterniveau</h4>
-        <div class="progress-bar"><div class="progress-fill" style="width:70%;">70%</div></div>
-
-        <h4>Kas lichtniveau</h4>
-        <div class="progress-bar"><div class="progress-fill" style="width:85%;">85%</div></div>
-
-        <h4>Temperatuur target</h4>
-        <div class="progress-bar"><div class="progress-fill" style="width:60%;">60%</div></div>
-    </div>
-</section>
-
-<!-- Testimonials -->
-<section class="section" id="testimonials">
-    <h2 style="text-align:center; margin-bottom:30px;">Wat klanten zeggen</h2>
-    <div class="cards">
-        <div class="testimonial">"Onze kas-efficiëntie steeg 20% dankzij realtime data!"</div>
-        <div class="testimonial">"90% minder plantstress door vroege waarschuwingen."</div>
-    </div>
-</section>
-
-<!-- Blog Snippets / Project Updates -->
-<section class="section" id="updates">
-    <h2 style="text-align:center; margin-bottom:30px;">Project Updates</h2>
-    <div class="cards">
-        <div class="blog">
-            <h4>Nieuwe sensoren toegevoegd</h4>
-            <p>Onze nieuwste sensoren meten nu ook bodemvochtigheid en lichtintensiteit realtime.</p>
-        </div>
-        <div class="blog">
-            <h4>Dashboard verbeterd</h4>
-            <p>Het dashboard geeft nu direct live data van windsnelheid, temperatuur en luchtvochtigheid.</p>
-        </div>
-    </div>
-</section>
-
+    </section>
 </div>
 
 <footer>
-    Contact: info@greenhouse.nl | Volg ons: 🌱🐦📘
+    Contact: info@greenhouse.nl
 </footer>
 
-<script>
-    // Hardcoded dashboard data
-    const currentData = {
-        windsnelheid: 5.2,
-        luchtvochtigheid: 60,
-        temperatuur: 18
-    };
-
-    function createDonut(ctx, value, max, color) {
-        return new Chart(ctx, {
-            type: 'doughnut',
-            data: { labels: ['Value','Remaining'], datasets:[{data:[value,max-value], backgroundColor:[color,'#eee'], borderWidth:1}] },
-            options: { responsive:true, rotation:-90, circumference:180, plugins:{legend:{display:false}} }
-        });
-    }
-
-    createDonut(document.getElementById('windsnelheidChart'), currentData.windsnelheid, 20, '#6aa84f');
-    createDonut(document.getElementById('luchtvochtigheidChart'), currentData.luchtvochtigheid, 100, '#38761d');
-    createDonut(document.getElementById('temperatuurChart'), currentData.temperatuur, 40, '#b6e07a');
-</script>
 </body>
 </html>
