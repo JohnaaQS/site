@@ -17,7 +17,8 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            background: #f4f4f4;
+            background: #f4f4f4 url("background.jpg") no-repeat center center fixed;
+            background-size: cover;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -67,6 +68,22 @@
         .main h2 {
             color: #38761d;
             margin-bottom: 15px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 0.2s;
+        }
+        .main p {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+        .main p:nth-of-type(1) {
+            animation-delay: 0.4s;
+        }
+        .main p:nth-of-type(2) {
+            animation-delay: 0.6s;
+        }
+        .main p:nth-of-type(3) {
+            animation-delay: 0.8s;
         }
         .sidebar {
             flex: 1;
@@ -82,6 +99,10 @@
             height: auto;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.4s ease;
+        }
+        .sidebar img:hover {
+            transform: scale(1.05);
         }
         footer {
             background: #333;
@@ -90,6 +111,11 @@
             padding: 15px 0;
             font-size: 12px;
             margin-top: auto;
+        }
+        /* Fade-in animatie */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -103,21 +129,21 @@
         <a href="dashboard.html">Dashboard</a>
         <a href="project.html">Project</a>
         <a href="contact.html">Contact</a>
-        <a href="grafieken.html">Grafieken</a>
+        <a href="grafiek.html">Grafieken</a>
     </nav>
 
     <div class="container">
         <section class="main">
             <h2>Optimaliseer jouw kasbeheer!</h2>
-            <p>Ons Greenhouse Management Project helpt bij het monitoren van temperatuur, luchtvochtigheid, lichtintensiteit en bodemvochtigheid. "
+            <p>Ons Greenhouse Management Project helpt bij het monitoren van temperatuur, luchtvochtigheid, lichtintensiteit en bodemvochtigheid. 
                 Met realtime sensordata kun je beter beslissingen nemen voor een gezonde kasomgeving.</p>
-            <p>Het systeem visualiseert alle data in een overzichtelijk dashboard en slaat informatie op voor analyse en trendherkenning. "
+            <p>Het systeem visualiseert alle data in een overzichtelijk dashboard en slaat informatie op voor analyse en trendherkenning. 
                 Daarnaast kunnen acties worden gesimuleerd, zoals het aansturen van ventilatoren of LED-verlichting bij bepaalde drempelwaarden.</p>
             <p>Ontdek hoe technologie jouw kasbeheer kan verbeteren en efficiëntie kan verhogen!</p>
         </section>
         <aside class="sidebar">  
             <div>
-                <a href="#" target="_blank">
+                <a href="grafiek.html">
                     <img src="intro.png" alt="Greenhouse afbeelding"> 
                 </a>
             </div>
